@@ -38,7 +38,7 @@ random_r:
 	xor dx, dx
 	xor ch, ch
 	call random
-	div cx
+	div cx						; 使用32位被除数,16位除数, 8位的除数得到的商可能会溢出
 	mov al, dl
 	
 	pop dx
@@ -71,12 +71,3 @@ random_y:
 	call random_r
 	pop cx
 	ret
-
-
-
-
-
-
-
-
-
