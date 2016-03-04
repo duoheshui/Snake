@@ -26,42 +26,23 @@ kbhit:
 	int 16h
 	
 	cmp ah, UP				; 上
-	je .hit_up
-	
-	cmp ah, DOWN			; 下
-	je .hit_down
-	
-	cmp ah, LEFT			; 左
-	je .hit_left
-	
-	cmp ah, RIGHT			; 右
-	je .hit_right
-	
-	cmp ah, _ENTER			; Enter 键退出游戏
-	jne .end
-	mov byte [quit_flag], 1
-.end:
-	ret
-	
-
-
-	
-; 键盘向上事件
-.hit_up:
 	mov byte [snake_direction], UP		; 改变蛇头方向
 	jmp .end
 	
-; 键盘向下事件
-.hit_down:
+	cmp ah, DOWN			; 下
 	mov byte [snake_direction], DOWN	; 改变蛇头方向
 	jmp .end
-
-; 键盘向左事件
-.hit_left:
+	
+	cmp ah, LEFT			; 左
 	mov byte [snake_direction], LEFT	; 改变蛇头方向
 	jmp .end
-
-; 键盘向右事件
-.hit_right:
+	
+	cmp ah, RIGHT			; 右
 	mov byte [snake_direction], RIGHT	; 改变蛇头方向
 	jmp .end
+	
+	;cmp ah, _ENTER			; Enter 键退出游戏
+	;jne .end
+	;mov byte [quit_flag], 1
+.end:
+	ret

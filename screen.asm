@@ -34,8 +34,6 @@ clear_screen:
 	add bx, 2
 	loop .fill
 	
-	call show_food
-	
 	pop es
 	pop cx
 	pop bx

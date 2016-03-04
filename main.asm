@@ -17,16 +17,16 @@ main:
 	;je quit_game
 	
 	call kbhit
-	cmp byte [quit_flag], 1
-	je quit_game			
+	cmp ah, _ENTER
+	je quit_game
+			
 	
-	call clear_screen	
+	call clear_screen
+	call show_food	
 	jmp main
 	
 quit_game:					; 退出游戏
-	mov word [food_pos], 0	; 清除food
 	call clear_screen		
-	
 	mov ah, 4ch				; 返回DOS
 	int 21h
 
