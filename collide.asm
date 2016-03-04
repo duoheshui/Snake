@@ -61,7 +61,9 @@ is_collide:
 	inc di
 	loop .loop
 	
-	call delay				; 'Game Over' 在屏幕上停留1秒
+	call delay				; 'Game Over' 在屏幕上停留一会
+	call delay
+	call delay
 	call delay
 	
 	stc
@@ -70,7 +72,7 @@ is_collide:
 	
 	
 	
-; 吃	
+; 吃
 .eat_food:
 	clc
 	jmp .end

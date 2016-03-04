@@ -10,15 +10,14 @@ NODE_SHAPE	equ '*'
 	call init_food
 main:
 	call show_snake
+	
 	call delay
 	call move
-	;call is_collide			; 每移动一步判断是否有碰撞
-	;cmp byte [quit_flag], 1
-	;je quit_game
+	call is_collide			; 每移动一步判断是否有碰撞
+	jc quit_game
 	
 	call kbhit
-	cmp ah, _ENTER
-	je quit_game
+	jc quit_game
 			
 	
 	call clear_screen
@@ -56,7 +55,4 @@ snake_size dw 7												   ;|
 ; 蛇头位置		
 food_xy dw 0
 food_pos dw 0
-
-; 退出标记
-quit_flag db 0
 ;================================================================
