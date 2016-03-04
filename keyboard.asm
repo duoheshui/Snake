@@ -24,7 +24,6 @@ kbhit:
 	mov ah, 01h	
 	int 16h
 	
-	clc	
 	jz .end			; 如果没有输入16h中断会设置zf
 	
 	mov ax, 0h		; 从键盘缓冲区获取一个输入
@@ -44,25 +43,41 @@ kbhit:
 	
 	cmp ah, _ENTER			; Enter 键退出游戏
 	je .enter
-	
-	clc						; 上，下，左，右，Enter以外的其他键
-	jmp .end
+					
+	jmp .end				; ; 上，下，左，右，Enter以外的其他键
 	
 	
 .up:
+	cmp byte [snake_direction], DOWN
+	je .end								; 禁止反向移动
 	mov byte [snake_direction], UP		; 改变蛇头方向
 	jmp .end
+	
 .down:
+	cmp byte [snake_direction], UP
+	je .end								; 禁止反向移动
 	mov byte [snake_direction], DOWN	; 改变蛇头方向
 	jmp .end
+	
 .left:
+	cmp byte [snake_direction], RIGHT
+	je .end								; 禁止反向移动
 	mov byte [snake_direction], LEFT	; 改变蛇头方向
 	jmp .end
+	
 .right:
+	cmp byte [snake_direction], LEFT
+	je .end								; 禁止反向移动 
 	mov byte [snake_direction], RIGHT	; 改变蛇头方向
 	jmp .end
+	
 .enter:
 	stc
+	jmp .return
 	
 .end:
+	clc
+	jmp .return
+	
+.return:
 	ret
