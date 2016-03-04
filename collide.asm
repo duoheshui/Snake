@@ -86,7 +86,7 @@ is_collide:
 	call move
 	mov [bx], ax			; 把最蛇尾复制到下一个
 	
-	mov bx, [snake_size]
+	mov bx, [snake_size]	
 	inc bx
 	mov [snake_size], bx	; 蛇长+1
 	
